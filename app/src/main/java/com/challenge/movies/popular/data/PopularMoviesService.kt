@@ -11,6 +11,6 @@ class PopularMoviesService@Inject constructor(private val popularMoviesClient: P
         return flow {
             emit(popularMoviesClient.getPopularMovies(page))
 
-        }//.flowOn(Dispatchers.IO)
+        }.flowOn(Dispatchers.IO)
     }
 }

@@ -18,7 +18,9 @@ class GetPopularMoviesUseCase @Inject constructor(private val popularMoviesRepos
         return PopularMovieModel(
             id = this.id ?: 0,
             title = title.orEmpty(),
-            poster = posterPath.orEmpty()
+            poster = posterPath.orEmpty(),
+            overview = overview.orEmpty(),
+            releaseDate = releaseDate.orEmpty()
         )
     }
 

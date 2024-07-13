@@ -70,9 +70,8 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
-    implementation ("androidx.navigation:navigation-compose:2.5.3")
-
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+    implementation("androidx.navigation:navigation-compose:2.5.3")
 
     //Hilt
     implementation("com.google.dagger:hilt-android:2.48")
@@ -83,6 +82,9 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
+
+    //Coil
+    implementation("io.coil-kt:coil-compose:2.6.0")
 
 
 }
