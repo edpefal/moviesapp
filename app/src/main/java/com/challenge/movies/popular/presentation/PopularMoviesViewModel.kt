@@ -12,8 +12,8 @@ import javax.inject.Inject
 @HiltViewModel
 class PopularMoviesViewModel @Inject constructor(private val getPopularMoviesUseCase: GetPopularMoviesUseCase): ViewModel() {
 
-    private val _popularMovies = MutableStateFlow<PopularMoviesUiState>(PopularMoviesUiState.Loading)
-    val popularMovies: StateFlow<PopularMoviesUiState> get() = _popularMovies
+    private val _popularMoviesUiState = MutableStateFlow<PopularMoviesUiState>(PopularMoviesUiState.Loading)
+    val popularMoviesUiState: StateFlow<PopularMoviesUiState> get() = _popularMoviesUiState
 
     fun getPopularMovies(page: Int) {
         viewModelScope.launch {
@@ -29,7 +29,7 @@ class PopularMoviesViewModel @Inject constructor(private val getPopularMoviesUse
     }
 
     fun updateState(newState: PopularMoviesUiState) {
-        _popularMovies.value = newState
+        _popularMoviesUiState.value = newState
     }
 
 }
