@@ -15,7 +15,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.challenge.movies.popular.presentation.PopularMoviesViewModel
 import com.challenge.movies.shared.presentation.screens.MainMoviesScreen
 import com.challenge.movies.ui.theme.MoviesTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     val popularMoviesViewModel: PopularMoviesViewModel by viewModels()

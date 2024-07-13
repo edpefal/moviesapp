@@ -5,9 +5,9 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface PopularMoviesClient {
-    @GET("/discover/movie")
+    @GET("3/discover/movie")
     suspend fun getPopularMovies(
         @Query("page") page: Int,
         @Query("sort_by") sortBy: String = "popularity.desc"
-    ): Flow<PopularMoviesResponse>
+    ): PopularMoviesResponse
 }
