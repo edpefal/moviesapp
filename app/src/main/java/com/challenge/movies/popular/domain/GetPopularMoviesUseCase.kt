@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class GetPopularMoviesUseCase @Inject constructor(private val popularMoviesRepository: PopularMoviesRepository) {
 
-    suspend fun execute(page: Int): Flow<List<PopularMovieModel>> {
+    suspend operator fun invoke(page: Int): Flow<List<PopularMovieModel>> {
         return popularMoviesRepository.getPopularMovies(page).map { popularMoviesList ->
             popularMoviesList.map { it.toPopularMovieModel() }
         }
