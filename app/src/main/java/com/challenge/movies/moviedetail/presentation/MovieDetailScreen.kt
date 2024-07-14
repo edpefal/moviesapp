@@ -62,7 +62,7 @@ fun MovieDetailScreen(movieId: Long, movieDetailViewModel: MovieDetailViewModel)
                 topBar = { MovieDetailTopAppBar() },
                 floatingActionButton = {
                     SaveMovieFAB {
-
+                        movieDetailViewModel.saveFavoriteMovie(movie)
                     }
                 }) {
                 Box(modifier = Modifier.padding(it).fillMaxSize()) {
