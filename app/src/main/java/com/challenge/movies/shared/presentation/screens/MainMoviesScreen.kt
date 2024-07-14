@@ -20,7 +20,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.challenge.movies.moviedetail.MovieDetailScreen
+import com.challenge.movies.moviedetail.presentation.MovieDetailScreen
+import com.challenge.movies.moviedetail.presentation.MovieDetailViewModel
 import com.challenge.movies.popular.presentation.PopularMoviesScreen
 import com.challenge.movies.popular.presentation.PopularMoviesViewModel
 import com.challenge.movies.shared.presentation.models.BottomNavItem
@@ -28,7 +29,10 @@ import com.challenge.movies.shared.routes.Routes
 
 
 @Composable
-fun MainMoviesScreen(popularMoviesViewModel: PopularMoviesViewModel) {
+fun MainMoviesScreen(
+    popularMoviesViewModel: PopularMoviesViewModel,
+    movieDetailViewModel: MovieDetailViewModel
+) {
     val navController = rememberNavController()
     val navItems = listOf(
         BottomNavItem(Routes.PopularMovies.route, Icons.Default.Star),
@@ -54,8 +58,8 @@ fun MainMoviesScreen(popularMoviesViewModel: PopularMoviesViewModel) {
                     type = NavType.LongType
                 })
             ) { backStackEntry ->
-                val movieId =  backStackEntry.arguments?.getLong("movieId") ?: 0
-                MovieDetailScreen(movieId)
+                val movieId = backStackEntry.arguments?.getLong("movieId") ?: 0
+                MovieDetailScreen(movieId, movieDetailViewModel)
             }
         }
     }

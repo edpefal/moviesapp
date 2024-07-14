@@ -13,4 +13,11 @@ class PopularMoviesService@Inject constructor(private val popularMoviesClient: P
 
         }.flowOn(Dispatchers.IO)
     }
+
+    suspend fun getMovieById(id: Long): Flow<PopularMovie> {
+        return flow {
+            emit(popularMoviesClient.getMovieById(id))
+
+        }.flowOn(Dispatchers.IO)
+    }
 }

@@ -2,6 +2,7 @@ package com.challenge.movies.popular.data
 
 import kotlinx.coroutines.flow.Flow
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface PopularMoviesClient {
@@ -10,4 +11,9 @@ interface PopularMoviesClient {
         @Query("page") page: Int,
         @Query("sort_by") sortBy: String = "popularity.desc"
     ): PopularMoviesResponse
+
+    @GET("3/movie/{movieId}")
+    suspend fun getMovieById(
+        @Path("movieId") id: Long,
+    ): PopularMovie
 }

@@ -1,8 +1,8 @@
 package com.challenge.movies.popular.di
 
 import com.challenge.movies.popular.data.PopularMoviesClient
-import com.challenge.movies.popular.data.PopularMoviesRepositoryImpl
-import com.challenge.movies.popular.domain.PopularMoviesRepository
+import com.challenge.movies.popular.data.MoviesRepositoryImpl
+import com.challenge.movies.popular.domain.MoviesRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,7 +19,7 @@ class MoviesModule {
     }
 
     @Provides
-    fun provideMoviesRepository(popularMoviesRepositoryImpl: PopularMoviesRepositoryImpl): PopularMoviesRepository {
-        return popularMoviesRepositoryImpl
+    fun provideMoviesRepository(moviesRepositoryImpl: MoviesRepositoryImpl): MoviesRepository {
+        return moviesRepositoryImpl
     }
 }
