@@ -20,4 +20,11 @@ class PopularMoviesService@Inject constructor(private val popularMoviesClient: P
 
         }.flowOn(Dispatchers.IO)
     }
+
+    suspend fun getNowPlayingMovies(page: Int): Flow<PopularMoviesResponse> {
+        return flow {
+            emit(popularMoviesClient.getNowPlayingMovies(page))
+
+        }.flowOn(Dispatchers.IO)
+    }
 }

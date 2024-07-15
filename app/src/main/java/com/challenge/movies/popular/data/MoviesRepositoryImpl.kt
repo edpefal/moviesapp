@@ -39,6 +39,10 @@ class MoviesRepositoryImpl @Inject constructor(
         }.flowOn(Dispatchers.IO)
     }
 
+    override suspend fun getNowPlayingMovies(page: Int): Flow<List<PopularMovie>> {
+        return popularMoviesService.getNowPlayingMovies(page).map { it.results ?: emptyList() }
+    }
+
     private fun PopularMovieModel.toFavoriteMovieEntity(): FavoriteMovieEntity {
         return FavoriteMovieEntity(
             id = id,

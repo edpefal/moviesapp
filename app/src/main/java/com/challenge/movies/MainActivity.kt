@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.challenge.movies.favorites.presentation.FavoriteMoviesViewModel
 import com.challenge.movies.moviedetail.presentation.MovieDetailViewModel
+import com.challenge.movies.nowplaying.presentation.NowPlayingMoviesViewModel
 import com.challenge.movies.popular.presentation.PopularMoviesViewModel
 import com.challenge.movies.shared.presentation.screens.MainMoviesScreen
 import com.challenge.movies.ui.theme.MoviesTheme
@@ -25,6 +26,7 @@ class MainActivity : ComponentActivity() {
     private val popularMoviesViewModel: PopularMoviesViewModel by viewModels()
     private val movieDetailViewModel: MovieDetailViewModel by viewModels()
     private val favoriteMoviesViewModel: FavoriteMoviesViewModel by viewModels()
+    private val nowPlayingMoviesViewModel: NowPlayingMoviesViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -32,7 +34,8 @@ class MainActivity : ComponentActivity() {
             MainMoviesScreen(
                 popularMoviesViewModel = popularMoviesViewModel,
                 movieDetailViewModel = movieDetailViewModel,
-                favoriteMoviesViewModel = favoriteMoviesViewModel
+                favoriteMoviesViewModel = favoriteMoviesViewModel,
+                nowPlayingMoviesViewModel = nowPlayingMoviesViewModel
             )
         }
     }

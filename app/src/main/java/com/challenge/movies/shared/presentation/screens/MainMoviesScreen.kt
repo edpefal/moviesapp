@@ -24,6 +24,7 @@ import com.challenge.movies.favorites.presentation.FavoriteMoviesScreen
 import com.challenge.movies.favorites.presentation.FavoriteMoviesViewModel
 import com.challenge.movies.moviedetail.presentation.MovieDetailScreen
 import com.challenge.movies.moviedetail.presentation.MovieDetailViewModel
+import com.challenge.movies.nowplaying.presentation.NowPlayingMoviesViewModel
 
 import com.challenge.movies.popular.presentation.PopularMoviesViewModel
 import com.challenge.movies.shared.presentation.models.BottomNavItem
@@ -34,7 +35,8 @@ import com.challenge.movies.shared.routes.Routes
 fun MainMoviesScreen(
     popularMoviesViewModel: PopularMoviesViewModel,
     movieDetailViewModel: MovieDetailViewModel,
-    favoriteMoviesViewModel: FavoriteMoviesViewModel
+    favoriteMoviesViewModel: FavoriteMoviesViewModel,
+    nowPlayingMoviesViewModel: NowPlayingMoviesViewModel
 ) {
     val navController = rememberNavController()
     val navItems = listOf(
@@ -69,6 +71,13 @@ fun MainMoviesScreen(
                 MoviesListScreen(
                     "Favorite Movies",
                     moviesViewModel = favoriteMoviesViewModel,
+                    navController
+                )
+            }
+            composable(Routes.NowPlaying.route) {
+                MoviesListScreen(
+                    "Now Playing Movies",
+                    moviesViewModel = nowPlayingMoviesViewModel,
                     navController
                 )
             }

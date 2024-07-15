@@ -12,6 +12,7 @@ interface MoviesRepository {
     suspend fun saveFavoriteMovie(movie: PopularMovieModel)
     suspend fun deleteFavoriteMovie(movieId: Long)
     suspend fun getFavoriteMovies(): Flow<List<FavoriteMovieEntity>>
+    suspend fun getNowPlayingMovies(page: Int): Flow<List<PopularMovie>>
 
 
 }
