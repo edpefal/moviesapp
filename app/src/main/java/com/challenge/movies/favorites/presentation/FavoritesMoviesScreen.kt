@@ -35,7 +35,7 @@ fun FavoriteMoviesScreen(
 ) {
     val popularMovies by favoriteMoviesViewModel.popularMoviesUiState.collectAsState()
     LaunchedEffect(Unit) {
-        favoriteMoviesViewModel.getFavoriteMovies()
+        //favoriteMoviesViewModel.getFavoriteMovies()
     }
     when (popularMovies) {
         is PopularMoviesUiState.Loading -> {

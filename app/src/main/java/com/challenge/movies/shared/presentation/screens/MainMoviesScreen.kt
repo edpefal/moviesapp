@@ -24,7 +24,7 @@ import com.challenge.movies.favorites.presentation.FavoriteMoviesScreen
 import com.challenge.movies.favorites.presentation.FavoriteMoviesViewModel
 import com.challenge.movies.moviedetail.presentation.MovieDetailScreen
 import com.challenge.movies.moviedetail.presentation.MovieDetailViewModel
-import com.challenge.movies.popular.presentation.PopularMoviesScreen
+
 import com.challenge.movies.popular.presentation.PopularMoviesViewModel
 import com.challenge.movies.shared.presentation.models.BottomNavItem
 import com.challenge.movies.shared.routes.Routes
@@ -50,8 +50,9 @@ fun MainMoviesScreen(
             startDestination = Routes.PopularMovies.route
         ) {
             composable(Routes.PopularMovies.route) {
-                PopularMoviesScreen(
-                    popularMoviesViewModel = popularMoviesViewModel,
+                MoviesListScreen(
+                    "Popular Movies",
+                    moviesViewModel = popularMoviesViewModel,
                     navController
                 )
             }
@@ -65,8 +66,9 @@ fun MainMoviesScreen(
                 MovieDetailScreen(movieId, movieDetailViewModel)
             }
             composable(Routes.Favorites.route) {
-                FavoriteMoviesScreen(
-                    favoriteMoviesViewModel = favoriteMoviesViewModel,
+                MoviesListScreen(
+                    "Favorite Movies",
+                    moviesViewModel = favoriteMoviesViewModel,
                     navController
                 )
             }

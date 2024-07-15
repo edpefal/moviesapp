@@ -1,4 +1,4 @@
-package com.challenge.movies.popular.presentation
+package com.challenge.movies.shared.presentation.screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -19,22 +19,25 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
+import com.challenge.movies.popular.presentation.PopularMovieModel
+import com.challenge.movies.popular.presentation.PopularMoviesUiState
+import com.challenge.movies.shared.presentation.viewmodel.MoviesViewModel
 import com.challenge.movies.shared.routes.Routes
 
 @Composable
-fun PopularMoviesScreen(
-    popularMoviesViewModel: PopularMoviesViewModel,
+fun MoviesListScreen(
+    title: String,
+    moviesViewModel: MoviesViewModel,
     navController: NavHostController
 ) {
-    val popularMovies by popularMoviesViewModel.popularMoviesUiState.collectAsState()
+    val popularMovies by moviesViewModel.popularMoviesUiState.collectAsState()
     LaunchedEffect(Unit) {
-        popularMoviesViewModel.getPopularMovies(1)
+        moviesViewModel.getMovies(1)
     }
     when (popularMovies) {
         is PopularMoviesUiState.Loading -> {
@@ -46,7 +49,7 @@ fun PopularMoviesScreen(
         is PopularMoviesUiState.Success -> {
             val movies = (popularMovies as PopularMoviesUiState.Success).movies
             Column {
-                Text(text = "Popular Movies", style = MaterialTheme.typography.headlineLarge)
+                Text(text = title, style = MaterialTheme.typography.headlineLarge)
                 LazyColumn() {
                     items(movies) { movie ->
                         MovieItem(movie, onCardClick = {
