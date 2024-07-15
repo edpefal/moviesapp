@@ -20,12 +20,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.challenge.movies.favorites.presentation.FavoriteMoviesScreen
 import com.challenge.movies.favorites.presentation.FavoriteMoviesViewModel
 import com.challenge.movies.moviedetail.presentation.MovieDetailScreen
 import com.challenge.movies.moviedetail.presentation.MovieDetailViewModel
 import com.challenge.movies.nowplaying.presentation.NowPlayingMoviesViewModel
-
 import com.challenge.movies.popular.presentation.PopularMoviesViewModel
 import com.challenge.movies.shared.presentation.models.BottomNavItem
 import com.challenge.movies.shared.routes.Routes

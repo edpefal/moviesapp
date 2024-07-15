@@ -15,9 +15,8 @@ import javax.inject.Inject
 @HiltViewModel
 class FavoriteMoviesViewModel @Inject constructor(private val getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase): MoviesViewModel() {
 
-    //private val _popularMoviesUiState = MutableStateFlow<PopularMoviesUiState>(PopularMoviesUiState.Loading)
-    //val popularMoviesUiState: StateFlow<PopularMoviesUiState> get() = _popularMoviesUiState
-    override fun getMovies(page: Int?) {
+    override fun getMovies() {
+        updateUiState(PopularMoviesUiState.Loading)
         viewModelScope.launch {
             getFavoriteMoviesUseCase().collect { movies ->
                 if (movies.isNotEmpty()) {

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -17,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -35,11 +37,13 @@ fun MoviesListScreen(
     moviesViewModel: MoviesViewModel,
     navController: NavHostController
 ) {
-    val popularMovies by moviesViewModel.popularMoviesUiState.collectAsState()
+    val moviesUiState by moviesViewModel.popularMoviesUiState.collectAsState()
+    val lazyListState = rememberLazyListState()
+
     LaunchedEffect(Unit) {
-        moviesViewModel.getMovies(1)
+        moviesViewModel.getMovies()
     }
-    when (popularMovies) {
+    when (moviesUiState) {
         is PopularMoviesUiState.Loading -> {
             Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
                 CircularProgressIndicator()
@@ -47,15 +51,25 @@ fun MoviesListScreen(
         }
 
         is PopularMoviesUiState.Success -> {
-            val movies = (popularMovies as PopularMoviesUiState.Success).movies
+            val movies = (moviesUiState as PopularMoviesUiState.Success).movies
             Column {
                 Text(text = title, style = MaterialTheme.typography.headlineLarge)
-                LazyColumn() {
+                LazyColumn(state = lazyListState) {
                     items(movies) { movie ->
                         MovieItem(movie, onCardClick = {
                             navController.navigate(Routes.MovieDetail.createRoute("${movie.id}"))
                         })
                     }
+                }
+
+                LaunchedEffect(lazyListState) {
+                    snapshotFlow { lazyListState.layoutInfo.visibleItemsInfo }
+                        .collect { visibleItems ->
+                            val lastVisibleItemIndex = visibleItems.lastOrNull()?.index ?: 0
+                            if (lastVisibleItemIndex == movies.size - 1) {
+                                moviesViewModel.getMovies()
+                            }
+                        }
                 }
             }
         }
@@ -83,10 +97,7 @@ fun MovieItem(movie: PopularMovieModel, onCardClick: () -> Unit) {
             AsyncImage(
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier
-                    //.weight(2f)
                     .width(100.dp),
-                //.height(250.dp),
-                //.fillMaxSize(),
                 model = "https://image.tmdb.org/t/p/w500/${movie.poster}",
                 contentDescription = "Movie Poster",
             )
@@ -115,6 +126,4 @@ fun MovieItem(movie: PopularMovieModel, onCardClick: () -> Unit) {
         }
     }
 
-
-    //Text(text = movie.title)
 }

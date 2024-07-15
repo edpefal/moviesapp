@@ -11,6 +11,11 @@ abstract class MoviesViewModel: ViewModel() {
     protected val _popularMoviesUiState = MutableStateFlow<PopularMoviesUiState>(PopularMoviesUiState.Loading)
     val popularMoviesUiState: StateFlow<PopularMoviesUiState> get() = _popularMoviesUiState
 
-    abstract fun getMovies(page: Int?)
+    protected var currentPage = 1
+    protected var totalPages = 1
+    protected val currentMovies = mutableListOf<PopularMovieModel>()
+
+    abstract fun getMovies()
     abstract fun updateUiState(newState: PopularMoviesUiState)
+
 }

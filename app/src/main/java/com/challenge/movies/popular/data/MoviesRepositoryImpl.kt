@@ -16,8 +16,8 @@ class MoviesRepositoryImpl @Inject constructor(
     private val favoriteMoviesDao: FavoriteMovieDao
 ) : MoviesRepository {
 
-    override suspend fun getPopularMovies(page: Int): Flow<List<PopularMovie>> {
-        return popularMoviesService.getPopularMovies(page).map { it.results ?: emptyList() }
+    override suspend fun getPopularMovies(page: Int): Flow<PopularMoviesResponse> {
+        return popularMoviesService.getPopularMovies(page)
     }
 
     override suspend fun getMovieById(id: Long): Flow<PopularMovie> {
@@ -39,8 +39,8 @@ class MoviesRepositoryImpl @Inject constructor(
         }.flowOn(Dispatchers.IO)
     }
 
-    override suspend fun getNowPlayingMovies(page: Int): Flow<List<PopularMovie>> {
-        return popularMoviesService.getNowPlayingMovies(page).map { it.results ?: emptyList() }
+    override suspend fun getNowPlayingMovies(page: Int): Flow<PopularMoviesResponse> {
+        return popularMoviesService.getNowPlayingMovies(page)
     }
 
     private fun PopularMovieModel.toFavoriteMovieEntity(): FavoriteMovieEntity {
