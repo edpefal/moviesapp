@@ -1,10 +1,10 @@
 package com.challenge.movies.shared.data.extensions
 
-import com.challenge.movies.popular.data.PopularMovie
-import com.challenge.movies.popular.presentation.PopularMovieModel
+import com.challenge.movies.moviemanager.data.Movie
+import com.challenge.movies.moviemanager.presentation.MovieModel
 
-fun PopularMovie.toPopularMovieModel(): PopularMovieModel {
-    return PopularMovieModel(
+fun Movie.toPopularMovieModel(): MovieModel {
+    return MovieModel(
         id = this.id ?: 0,
         title = title.orEmpty(),
         poster = posterPath.orEmpty(),

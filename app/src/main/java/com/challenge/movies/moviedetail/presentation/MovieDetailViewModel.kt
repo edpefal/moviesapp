@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.challenge.movies.moviedetail.domain.GetMovieByIdUseCase
 import com.challenge.movies.moviedetail.domain.SaveFavoriteMovieUseCase
-import com.challenge.movies.popular.presentation.PopularMovieModel
+import com.challenge.movies.moviemanager.presentation.MovieModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -33,7 +33,7 @@ class MovieDetailViewModel @Inject constructor(
         }
     }
 
-    fun saveFavoriteMovie(movie: PopularMovieModel) {
+    fun saveFavoriteMovie(movie: MovieModel) {
         viewModelScope.launch {
             saveFavoriteMovieUseCase(movie)
         }

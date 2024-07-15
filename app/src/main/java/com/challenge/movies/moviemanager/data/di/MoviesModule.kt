@@ -1,8 +1,8 @@
-package com.challenge.movies.popular.di
+package com.challenge.movies.moviemanager.data.di
 
-import com.challenge.movies.popular.data.PopularMoviesClient
-import com.challenge.movies.popular.data.MoviesRepositoryImpl
-import com.challenge.movies.popular.domain.MoviesRepository
+import com.challenge.movies.moviemanager.data.MoviesClient
+import com.challenge.movies.moviemanager.data.MoviesRepositoryImpl
+import com.challenge.movies.moviemanager.domain.MoviesRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,8 +14,8 @@ import retrofit2.Retrofit
 class MoviesModule {
 
     @Provides
-    fun provideMoviesClient(retrofit: Retrofit): PopularMoviesClient {
-        return retrofit.create(PopularMoviesClient::class.java)
+    fun provideMoviesClient(retrofit: Retrofit): MoviesClient {
+        return retrofit.create(MoviesClient::class.java)
     }
 
     @Provides

@@ -1,10 +1,10 @@
-package com.challenge.movies.popular.data.db.dao
+package com.challenge.movies.moviemanager.data.db.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.challenge.movies.popular.data.db.entities.FavoriteMovieEntity
+import com.challenge.movies.moviemanager.data.db.entities.FavoriteMovieEntity
 
 
 @Dao

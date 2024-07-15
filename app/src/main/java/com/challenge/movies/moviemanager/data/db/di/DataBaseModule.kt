@@ -1,18 +1,13 @@
-package com.challenge.movies.popular.data.db.di
+package com.challenge.movies.moviemanager.data.db.di
 
 import android.content.Context
 import androidx.room.Room
-import androidx.room.RoomDatabase
-import com.challenge.movies.popular.data.PopularMoviesClient
-import com.challenge.movies.popular.data.MoviesRepositoryImpl
-import com.challenge.movies.popular.data.db.MoviesDatabase
-import com.challenge.movies.popular.domain.MoviesRepository
+import com.challenge.movies.moviemanager.data.db.MoviesDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import retrofit2.Retrofit
 
 @Module
 @InstallIn(SingletonComponent::class)

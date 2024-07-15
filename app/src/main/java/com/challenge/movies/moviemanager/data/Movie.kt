@@ -1,8 +1,8 @@
-package com.challenge.movies.popular.data
+package com.challenge.movies.moviemanager.data
 
 import com.google.gson.annotations.SerializedName
 
-data class PopularMovie(
+data class Movie(
     @SerializedName("adult") val adult: Boolean? = null,
     @SerializedName("backdrop_path") val backdropPath: String? = null,
     @SerializedName("generate_ids") val genreIDS: List<Long>? = null,

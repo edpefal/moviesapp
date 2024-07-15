@@ -26,8 +26,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
-import com.challenge.movies.popular.presentation.PopularMovieModel
-import com.challenge.movies.popular.presentation.PopularMoviesUiState
+import com.challenge.movies.moviemanager.presentation.MovieModel
+import com.challenge.movies.shared.presentation.models.MoviesUiState
 import com.challenge.movies.shared.presentation.viewmodel.MoviesViewModel
 import com.challenge.movies.shared.routes.Routes
 
@@ -37,21 +37,21 @@ fun MoviesListScreen(
     moviesViewModel: MoviesViewModel,
     navController: NavHostController
 ) {
-    val moviesUiState by moviesViewModel.popularMoviesUiState.collectAsState()
+    val moviesUiState by moviesViewModel.moviesUiState.collectAsState()
     val lazyListState = rememberLazyListState()
 
     LaunchedEffect(Unit) {
         moviesViewModel.getMovies()
     }
     when (moviesUiState) {
-        is PopularMoviesUiState.Loading -> {
+        is MoviesUiState.Loading -> {
             Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
                 CircularProgressIndicator()
             }
         }
 
-        is PopularMoviesUiState.Success -> {
-            val movies = (moviesUiState as PopularMoviesUiState.Success).movies
+        is MoviesUiState.Success -> {
+            val movies = (moviesUiState as MoviesUiState.Success).movies
             Column {
                 Text(text = title, style = MaterialTheme.typography.headlineLarge)
                 LazyColumn(state = lazyListState) {
@@ -74,14 +74,14 @@ fun MoviesListScreen(
             }
         }
 
-        PopularMoviesUiState.Empty -> {
+        MoviesUiState.Empty -> {
             Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
                 Text("There are no movies to display.")
             }
 
         }
 
-        PopularMoviesUiState.Error -> {
+        MoviesUiState.Error -> {
             Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
                 Text("There was an error loading movies.")
             }
@@ -91,7 +91,7 @@ fun MoviesListScreen(
 }
 
 @Composable
-fun MovieItem(movie: PopularMovieModel, onCardClick: () -> Unit) {
+fun MovieItem(movie: MovieModel, onCardClick: () -> Unit) {
     Card(modifier = Modifier.clickable { onCardClick() }) {
         Row(modifier = Modifier.height(180.dp)) {
             AsyncImage(

@@ -1,4 +1,4 @@
-package com.challenge.movies.popular.data.db.entities
+package com.challenge.movies.moviemanager.data.db.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
