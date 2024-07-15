@@ -32,11 +32,9 @@ class MoviesRepositoryImpl @Inject constructor(
         favoriteMoviesDao.deleteFavoriteMovieById(movieId)
     }
 
-    override suspend fun getFavoriteMovies(movie: PopularMovieModel): Flow<List<PopularMovieModel>> {
+    override suspend fun getFavoriteMovies(): Flow<List<FavoriteMovieEntity>> {
         return flow {
-            val result = favoriteMoviesDao.getAllFavoriteMovies().map { favoriteMovieEntity ->
-                favoriteMovieEntity.toPopularMovieModel()
-            }
+            val result = favoriteMoviesDao.getAllFavoriteMovies()
             emit(result)
         }.flowOn(Dispatchers.IO)
     }
@@ -50,16 +48,5 @@ class MoviesRepositoryImpl @Inject constructor(
             releaseDate = releaseDate,
         )
     }
-
-    private fun FavoriteMovieEntity.toPopularMovieModel(): PopularMovieModel {
-        return PopularMovieModel(
-            id = id,
-            title = title,
-            overview = overview,
-            poster = posterPath,
-            releaseDate = releaseDate,
-        )
-    }
-
 
 }
