@@ -1,7 +1,0 @@
-package com.challenge.movies.shared.data
-
-import javax.inject.Inject
-
-class TokenProvider @Inject constructor() {
-    fun getToken() = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ZDI4YTIwN2FjOGVmM2YxN2QxY2VlNTFhNWNhZTNlMSIsIm5iZiI6MTcyMDg3NzAzMy44MjY2NzEsInN1YiI6IjY2OTI3Y2RjMjI2M2RhN2NjY2FkMWZiZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.tzPT0zF9DTs6DiD_ryUYzkKMzI40iy81Q_bPXJVNZJE"
-}

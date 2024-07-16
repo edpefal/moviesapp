@@ -1,7 +1,7 @@
 package com.challenge.movies.nowplaying.presentation
 
-import com.challenge.movies.nowplaying.domain.GetNowPlayingMoviesUseCase
-import com.challenge.movies.shared.presentation.models.MoviesUiState
+import com.challenge.nowplaying.domain.GetNowPlayingMoviesUseCase
+import com.challenge.shared.presentation.models.MoviesUiState
 import com.challenge.moviesmanager.presentation.MovieListModel
 import com.challenge.moviesmanager.presentation.MovieModel
 import io.mockk.coEvery
@@ -22,8 +22,8 @@ import org.junit.Test
 class NowPlayingMoviesViewModelTest {
 
 
-    private lateinit var nowPlayingMoviesViewModel: NowPlayingMoviesViewModel
-    private lateinit var getNowPlayingMoviesUseCase: GetNowPlayingMoviesUseCase
+    private lateinit var nowPlayingMoviesViewModel: com.challenge.nowplaying.presentation.NowPlayingMoviesViewModel
+    private lateinit var getNowPlayingMoviesUseCase: com.challenge.nowplaying.domain.GetNowPlayingMoviesUseCase
 
     private val testDispatcher = StandardTestDispatcher()
     private lateinit var movieListModel: MovieListModel
@@ -37,7 +37,9 @@ class NowPlayingMoviesViewModelTest {
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
         getNowPlayingMoviesUseCase = mockk()
-        nowPlayingMoviesViewModel = NowPlayingMoviesViewModel(getNowPlayingMoviesUseCase)
+        nowPlayingMoviesViewModel = com.challenge.nowplaying.presentation.NowPlayingMoviesViewModel(
+            getNowPlayingMoviesUseCase
+        )
         movieModel = MovieModel(
             id = 1,
             overview = "overview",
@@ -61,7 +63,7 @@ class NowPlayingMoviesViewModelTest {
         nowPlayingMoviesViewModel.getMovies()
         advanceUntilIdle()
         coVerify { getNowPlayingMoviesUseCase.invoke(page) }
-        assert(nowPlayingMoviesViewModel.moviesUiState.value == MoviesUiState.Success(movieModelList))
+        assert(nowPlayingMoviesViewModel.moviesUiState.value == com.challenge.shared.presentation.models.MoviesUiState.Success(movieModelList))
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -72,7 +74,7 @@ class NowPlayingMoviesViewModelTest {
         nowPlayingMoviesViewModel.getMovies()
         advanceUntilIdle()
         coVerify { getNowPlayingMoviesUseCase.invoke(page) }
-        assert(nowPlayingMoviesViewModel.moviesUiState.value == MoviesUiState.Empty)
+        assert(nowPlayingMoviesViewModel.moviesUiState.value == com.challenge.shared.presentation.models.MoviesUiState.Empty)
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -84,7 +86,7 @@ class NowPlayingMoviesViewModelTest {
         nowPlayingMoviesViewModel.getMovies()
         advanceUntilIdle()
         coVerify { getNowPlayingMoviesUseCase.invoke(page) }
-        assert(nowPlayingMoviesViewModel.moviesUiState.value == MoviesUiState.Error)
+        assert(nowPlayingMoviesViewModel.moviesUiState.value == com.challenge.shared.presentation.models.MoviesUiState.Error)
     }
 
 }

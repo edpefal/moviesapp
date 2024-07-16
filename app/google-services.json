@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "356725978351",
+    "project_id": "moviesapp-7eaa1",
+    "storage_bucket": "moviesapp-7eaa1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356725978351:android:f53e810de45995d97d971a",
+        "android_client_info": {
+          "package_name": "com.challenge.movies"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEM1fUsg4Q26rWUOM0LzmYiB6oYvlY44M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

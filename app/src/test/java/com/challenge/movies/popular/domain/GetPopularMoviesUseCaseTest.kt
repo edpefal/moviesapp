@@ -14,7 +14,7 @@ import org.junit.Test
 class GetPopularMoviesUseCaseTest {
 
     private lateinit var movieRepository: MoviesRepository
-    private lateinit var getPopularMoviesUseCase: GetPopularMoviesUseCase
+    private lateinit var getPopularMoviesUseCase: com.challenge.popular.domain.GetPopularMoviesUseCase
     private lateinit var movieResponse: MoviesResponse
     private lateinit var movie: Movie
     private val page = 1
@@ -24,7 +24,8 @@ class GetPopularMoviesUseCaseTest {
     @Before
     fun setUp() {
         movieRepository = mockk()
-        getPopularMoviesUseCase = GetPopularMoviesUseCase(movieRepository)
+        getPopularMoviesUseCase =
+            com.challenge.popular.domain.GetPopularMoviesUseCase(movieRepository)
         movie = Movie(
             adult = false,
             backdropPath = "",

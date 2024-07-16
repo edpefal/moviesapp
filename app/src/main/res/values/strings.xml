@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Movies</string>
+    <string name="app_name">Movies App</string>
     <string name="save_movie">Save movie</string>
     <string name="no_movies">There are no movies to display.</string>
     <string name="movies_error">There was an error loading movies..</string>

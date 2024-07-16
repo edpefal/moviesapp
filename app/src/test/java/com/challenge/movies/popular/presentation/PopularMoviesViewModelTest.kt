@@ -1,7 +1,6 @@
 package com.challenge.movies.popular.presentation
 
-import com.challenge.movies.popular.domain.GetPopularMoviesUseCase
-import com.challenge.movies.shared.presentation.models.MoviesUiState
+import com.challenge.shared.presentation.models.MoviesUiState
 import com.challenge.moviesmanager.presentation.MovieListModel
 import com.challenge.moviesmanager.presentation.MovieModel
 import io.mockk.coEvery
@@ -21,8 +20,8 @@ import org.junit.Test
 
 class PopularMoviesViewModelTest {
 
-    private lateinit var popularMoviesViewModel: PopularMoviesViewModel
-    private lateinit var getPopularMoviesUseCase: GetPopularMoviesUseCase
+    private lateinit var popularMoviesViewModel: com.challenge.popular.presentation.PopularMoviesViewModel
+    private lateinit var getPopularMoviesUseCase: com.challenge.popular.domain.GetPopularMoviesUseCase
 
     private val testDispatcher = StandardTestDispatcher()
     private lateinit var movieListModel: MovieListModel
@@ -36,7 +35,8 @@ class PopularMoviesViewModelTest {
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
         getPopularMoviesUseCase = mockk()
-        popularMoviesViewModel = PopularMoviesViewModel(getPopularMoviesUseCase)
+        popularMoviesViewModel =
+            com.challenge.popular.presentation.PopularMoviesViewModel(getPopularMoviesUseCase)
         movieModel = MovieModel(
             id = 1,
             overview = "overview",
@@ -60,7 +60,7 @@ class PopularMoviesViewModelTest {
         popularMoviesViewModel.getMovies()
         advanceUntilIdle()
         coVerify { getPopularMoviesUseCase.invoke(page) }
-        assert(popularMoviesViewModel.moviesUiState.value == MoviesUiState.Success(movieModelList))
+        assert(popularMoviesViewModel.moviesUiState.value == com.challenge.shared.presentation.models.MoviesUiState.Success(movieModelList))
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -71,7 +71,7 @@ class PopularMoviesViewModelTest {
         popularMoviesViewModel.getMovies()
         advanceUntilIdle()
         coVerify { getPopularMoviesUseCase.invoke(page) }
-        assert(popularMoviesViewModel.moviesUiState.value == MoviesUiState.Empty)
+        assert(popularMoviesViewModel.moviesUiState.value == com.challenge.shared.presentation.models.MoviesUiState.Empty)
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -83,6 +83,6 @@ class PopularMoviesViewModelTest {
         popularMoviesViewModel.getMovies()
         advanceUntilIdle()
         coVerify { getPopularMoviesUseCase.invoke(page) }
-        assert(popularMoviesViewModel.moviesUiState.value == MoviesUiState.Error)
+        assert(popularMoviesViewModel.moviesUiState.value == com.challenge.shared.presentation.models.MoviesUiState.Error)
     }
 }

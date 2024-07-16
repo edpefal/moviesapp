@@ -1,0 +1,4 @@
+<resources>
+    <string name="images_path" translatable="false">https://image.tmdb.org/t/p/w500/%1$s</string>
+    <string name="save_movie">Save movie</string>
+</resources>

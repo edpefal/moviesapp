@@ -13,14 +13,15 @@ import org.junit.Test
 
 class GetFavoriteMoviesUseCaseTest {
     private lateinit var movieRepository: MoviesRepository
-    private lateinit var getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase
+    private lateinit var getFavoriteMoviesUseCase: com.challenge.favorites.domain.GetFavoriteMoviesUseCase
     private lateinit var favoriteMovieEntity: FavoriteMovieEntity
 
 
     @Before
     fun setUp() {
         movieRepository = mockk()
-        getFavoriteMoviesUseCase = GetFavoriteMoviesUseCase(movieRepository)
+        getFavoriteMoviesUseCase =
+            com.challenge.favorites.domain.GetFavoriteMoviesUseCase(movieRepository)
         favoriteMovieEntity = FavoriteMovieEntity(
             id = 1L,
             voteAverage = 1.0,

@@ -4,6 +4,7 @@ plugins {
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
     id ("kotlin-parcelize")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -55,6 +56,11 @@ android {
 dependencies {
 
     implementation(project(":app:moviesmanager"))
+    implementation(project(":app:popular"))
+    implementation(project(":app:shared"))
+    implementation(project(":app:nowplaying"))
+    implementation(project(":app:favorites"))
+    implementation(project(":app:moviedetail"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -83,7 +89,6 @@ dependencies {
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
 
     //Coil
@@ -96,6 +101,9 @@ dependencies {
 
     //MockK
     testImplementation("io.mockk:mockk:1.13.10")
+
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+    implementation("com.google.firebase:firebase-analytics")
 
 
 }

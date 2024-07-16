@@ -1,7 +1,7 @@
 package com.challenge.movies.favorites.presentation
 
-import com.challenge.movies.favorites.domain.GetFavoriteMoviesUseCase
-import com.challenge.movies.shared.presentation.models.MoviesUiState
+import com.challenge.favorites.domain.GetFavoriteMoviesUseCase
+import com.challenge.shared.presentation.models.MoviesUiState
 import com.challenge.moviesmanager.presentation.MovieModel
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -20,8 +20,8 @@ import org.junit.Test
 
 class FavoriteMoviesViewModelTest {
 
-    private lateinit var favoriteMoviesViewModel: FavoriteMoviesViewModel
-    private lateinit var getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase
+    private lateinit var favoriteMoviesViewModel: com.challenge.favorites.presentation.FavoriteMoviesViewModel
+    private lateinit var getFavoriteMoviesUseCase: com.challenge.favorites.domain.GetFavoriteMoviesUseCase
 
     private val testDispatcher = StandardTestDispatcher()
     private lateinit var movieModel: MovieModel
@@ -32,7 +32,8 @@ class FavoriteMoviesViewModelTest {
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
         getFavoriteMoviesUseCase = mockk()
-        favoriteMoviesViewModel = FavoriteMoviesViewModel(getFavoriteMoviesUseCase)
+        favoriteMoviesViewModel =
+            com.challenge.favorites.presentation.FavoriteMoviesViewModel(getFavoriteMoviesUseCase)
         movieModel = MovieModel(
             id = 1,
             overview = "overview",
@@ -54,7 +55,7 @@ class FavoriteMoviesViewModelTest {
         favoriteMoviesViewModel.getMovies()
         advanceUntilIdle()
         coVerify { getFavoriteMoviesUseCase() }
-        assert(favoriteMoviesViewModel.moviesUiState.value == MoviesUiState.Success(movieModelList))
+        assert(favoriteMoviesViewModel.moviesUiState.value == com.challenge.shared.presentation.models.MoviesUiState.Success(movieModelList))
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -65,7 +66,7 @@ class FavoriteMoviesViewModelTest {
         favoriteMoviesViewModel.getMovies()
         advanceUntilIdle()
         coVerify { getFavoriteMoviesUseCase() }
-        assert(favoriteMoviesViewModel.moviesUiState.value == MoviesUiState.Empty)
+        assert(favoriteMoviesViewModel.moviesUiState.value == com.challenge.shared.presentation.models.MoviesUiState.Empty)
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -77,7 +78,7 @@ class FavoriteMoviesViewModelTest {
         favoriteMoviesViewModel.getMovies()
         advanceUntilIdle()
         coVerify { getFavoriteMoviesUseCase() }
-        assert(favoriteMoviesViewModel.moviesUiState.value == MoviesUiState.Error)
+        assert(favoriteMoviesViewModel.moviesUiState.value == com.challenge.shared.presentation.models.MoviesUiState.Error)
     }
 
 }

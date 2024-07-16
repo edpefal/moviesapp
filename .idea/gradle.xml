@@ -10,7 +10,12 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/app/favorites" />
+            <option value="$PROJECT_DIR$/app/moviedetail" />
             <option value="$PROJECT_DIR$/app/moviesmanager" />
+            <option value="$PROJECT_DIR$/app/nowplaying" />
+            <option value="$PROJECT_DIR$/app/popular" />
+            <option value="$PROJECT_DIR$/app/shared" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
