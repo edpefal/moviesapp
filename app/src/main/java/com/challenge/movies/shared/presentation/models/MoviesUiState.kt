@@ -1,6 +1,6 @@
 package com.challenge.movies.shared.presentation.models
 
-import com.challenge.movies.moviemanager.presentation.MovieModel
+import com.challenge.moviesmanager.presentation.MovieModel
 
 sealed class MoviesUiState {
     data class Success(val movies: List<MovieModel>) : MoviesUiState()

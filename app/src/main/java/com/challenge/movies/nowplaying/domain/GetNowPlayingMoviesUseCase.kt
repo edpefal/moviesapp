@@ -1,7 +1,7 @@
 package com.challenge.movies.nowplaying.domain
 
-import com.challenge.movies.moviemanager.domain.MoviesRepository
-import com.challenge.movies.moviemanager.presentation.MovieListModel
+import com.challenge.moviesmanager.domain.MoviesRepository
+import com.challenge.moviesmanager.presentation.MovieListModel
 import com.challenge.movies.shared.data.extensions.toPopularMovieModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

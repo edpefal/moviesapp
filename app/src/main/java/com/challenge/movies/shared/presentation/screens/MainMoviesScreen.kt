@@ -63,7 +63,7 @@ fun MainMoviesScreen(
                 })
             ) { backStackEntry ->
                 val movieId = backStackEntry.arguments?.getLong("movieId") ?: 0
-                MovieDetailScreen(movieId, movieDetailViewModel)
+                MovieDetailScreen(movieId, movieDetailViewModel, navController)
             }
             composable(Routes.Favorites.route) {
                 MoviesListScreen(

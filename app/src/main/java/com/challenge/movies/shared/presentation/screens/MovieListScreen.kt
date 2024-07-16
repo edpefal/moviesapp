@@ -6,11 +6,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -26,7 +28,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
-import com.challenge.movies.moviemanager.presentation.MovieModel
+import com.challenge.moviesmanager.presentation.MovieModel
 import com.challenge.movies.shared.presentation.models.MoviesUiState
 import com.challenge.movies.shared.presentation.viewmodel.MoviesViewModel
 import com.challenge.movies.shared.routes.Routes
@@ -52,8 +54,8 @@ fun MoviesListScreen(
 
         is MoviesUiState.Success -> {
             val movies = (moviesUiState as MoviesUiState.Success).movies
-            Column {
-                Text(text = title, style = MaterialTheme.typography.headlineLarge)
+            Column(modifier = Modifier.padding(16.dp)) {
+                Text(text = title, style = MaterialTheme.typography.displaySmall, modifier = Modifier.padding(bottom = 16.dp))
                 LazyColumn(state = lazyListState) {
                     items(movies) { movie ->
                         MovieItem(movie, onCardClick = {
@@ -92,7 +94,9 @@ fun MoviesListScreen(
 
 @Composable
 fun MovieItem(movie: MovieModel, onCardClick: () -> Unit) {
-    Card(modifier = Modifier.clickable { onCardClick() }) {
+    Card(elevation = CardDefaults.cardElevation(defaultElevation = 4.dp), modifier = Modifier
+        .padding(bottom = 16.dp)
+        .clickable { onCardClick() }) {
         Row(modifier = Modifier.height(180.dp)) {
             AsyncImage(
                 contentScale = ContentScale.FillBounds,
@@ -103,7 +107,7 @@ fun MovieItem(movie: MovieModel, onCardClick: () -> Unit) {
             )
             Column(
                 modifier = Modifier
-                    .weight(1f)
+                    .weight(1f).padding(8.dp)
             ) {
                 Text(
                     text = movie.title,

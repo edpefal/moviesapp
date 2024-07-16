@@ -1,7 +1,7 @@
 package com.challenge.movies.shared.data.extensions
 
-import com.challenge.movies.moviemanager.data.Movie
-import com.challenge.movies.moviemanager.presentation.MovieModel
+import com.challenge.moviesmanager.data.Movie
+import com.challenge.moviesmanager.presentation.MovieModel
 
 fun Movie.toPopularMovieModel(): MovieModel {
     return MovieModel(
@@ -9,6 +9,9 @@ fun Movie.toPopularMovieModel(): MovieModel {
         title = title.orEmpty(),
         poster = posterPath.orEmpty(),
         overview = overview.orEmpty(),
-        releaseDate = releaseDate.orEmpty()
+        releaseDate = releaseDate.orEmpty(),
+        popularity = popularity ?: 0.0,
+        voteAverage = voteAverage ?: 0.0,
+        languages = originalLanguage.orEmpty(),
     )
 }
