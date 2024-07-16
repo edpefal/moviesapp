@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Movies</string>
     <string name="save_movie">Save movie</string>
+    <string name="no_movies">There are no movies to display.</string>
+    <string name="movies_error">There was an error loading movies..</string>
+    <string name="images_path" translatable="false">https://image.tmdb.org/t/p/w500/%1$s</string>
 </resources>

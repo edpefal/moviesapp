@@ -24,10 +24,12 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
+import com.challenge.movies.R
 import com.challenge.moviesmanager.presentation.MovieModel
 import com.challenge.movies.shared.presentation.models.MoviesUiState
 import com.challenge.movies.shared.presentation.viewmodel.MoviesViewModel
@@ -78,14 +80,15 @@ fun MoviesListScreen(
 
         MoviesUiState.Empty -> {
             Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
-                Text("There are no movies to display.")
+                Text(stringResource(id = R.string.no_movies))
             }
 
         }
 
+
         MoviesUiState.Error -> {
             Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
-                Text("There was an error loading movies.")
+                Text(stringResource(id = R.string.movies_error))
             }
         }
 
@@ -102,12 +105,13 @@ fun MovieItem(movie: MovieModel, onCardClick: () -> Unit) {
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier
                     .width(100.dp),
-                model = "https://image.tmdb.org/t/p/w500/${movie.poster}",
+                model = stringResource(id = R.string.images_path, movie.poster),
                 contentDescription = "Movie Poster",
             )
             Column(
                 modifier = Modifier
-                    .weight(1f).padding(8.dp)
+                    .weight(1f)
+                    .padding(8.dp)
             ) {
                 Text(
                     text = movie.title,
