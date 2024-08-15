@@ -27,5 +27,8 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v3
 
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
       - name: Execute Gradle command - lintDebug
-        run: ./gradle lintDebug
+        run: ./gradlew lintDebug
