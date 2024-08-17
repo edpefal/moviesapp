@@ -57,7 +57,7 @@ class GetFavoriteMoviesUseCaseTest {
                 assert(it[0].overview == "overview")
                 assert(it[0].title == "title")
                 assert(it[0].poster == "posterPath")
-                assert(it[0].releaseDate == "releaseDat")
+                assert(it[0].releaseDate == "releaseDate")
             }
         }
 }
